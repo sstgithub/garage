@@ -10,6 +10,7 @@
 		%li= "Price: #{number_to_currency(it.price)}"
 		%li= "Sold?: #{it.working_condition}"
 
+
 		=form_for it, :method => "put" do |i|
 			=i.hidden_field :working_condition, value: true
 			=i.submit "Sold"
@@ -19,8 +20,7 @@
 			=i.submit "Refunded"
 
 		
-			/? do not get the below code -- why both needed?
-		%button=link_to "delete", "/items/#{it.id}", {:action => "delete", :method => :delete}
+		%button=link_to "delete", it, :method => :delete
 
 		%button=link_to "edit", "/items/#{it.id}/edit"
 
