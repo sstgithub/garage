@@ -1,5 +1,7 @@
 %h1 These are my items
 
+%button=link_to "Add a new item!", "/items/new"
+
 %ul
 	- @items.each do |it| 
 		%li= "Name: #{it.name}"
@@ -8,24 +10,23 @@
 		%li= "Price: #{number_to_currency(it.price)}"
 		%li= "Sold?: #{it.working_condition}"
 
-		=form_for it, action: "PUT" do |t|
-			=t.hidden_field :working_condition, :value => true
-			=t.submit "Sold"
+		=form_for it, :action => "post" do |i|
+			=i.hidden_field :working_condition, :value => true
+			=i.submit "Sold"
 
-		=form_for it, action: "PUT" do |t|
-			=t.hidden_field :working_condition, :value => false
-			=t.submit "Bought Back"
-
-		=form_for it, action: "DELETE" do |t|
-			=it.id
-			=t.submit "Destroy"
+		=form_for it, action: "PUT" do |i|
+			=i.hidden_field :working_condition, :value => false
+			=i.submit "Bought Back"
 
 		
 
 		%button=link_to "delete", "/items/#{it.id}", {:action => "delete", :method => :delete}
 
+		%button=link_to "edit", "/items/#{it.id}/edit"
+
 
 
 
 		%br
+
 
