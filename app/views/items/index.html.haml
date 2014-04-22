@@ -1,0 +1,30 @@
+%h1 These are my items
+
+%ul
+	- @items.each do |it| 
+		%li= "Name: #{it.name}"
+		%li= "Description: #{it.description}"
+		%li= "Age: #{it.age}"
+		%li= "Price: #{number_to_currency(it.price)}"
+		%li= "Sold?: #{it.working_condition}"
+
+		=url: "/items/#{it.id}", action: "PUT" do |t|
+			=t.hidden_field :working_condition, :value => true
+			=t.submit "Sold"
+
+		=form_for it, url: "/items/#{it.id}", action: "PUT" do |t|
+			=t.hidden_field :working_condition, :value => false
+			=t.submit "Bought Back"
+
+		/ %button
+		/ 	=form_for it, url: "/items/#{it.id}", action: "DELETE", :item => it.id
+
+		/ %button_to
+		/ 	=form_for it
+		/ 	=url: "/items/#{it.id}"
+		/ 	=item: => it.id
+		/ 	=action: => "DELETE"
+
+
+		%br
+

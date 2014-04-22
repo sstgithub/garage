@@ -1,0 +1,14 @@
+%h1= @item.name
+%h3= @item.description
+%br
+Description:
+= @item.description
+
+
+
+=link_to "Destroy", {:action => "destroy", :method => :destroy}
+
+
+%form
+%button
+=link_to "Delete", "/items/#{@item.id}", {:action => "delete", :item => @item, :method => :destroy}
