@@ -1,2 +1,3 @@
 = form_for @item, url: "/items/#{@item.id}" do |it|
 	= render "form", it: it
+	= it.submit "Edit"

@@ -10,16 +10,16 @@
 		%li= "Price: #{number_to_currency(it.price)}"
 		%li= "Sold?: #{it.working_condition}"
 
-		=form_for it, :action => "post" do |i|
-			=i.hidden_field :working_condition, :value => true
+		=form_for it, :method => "put" do |i|
+			=i.hidden_field :working_condition, value: true
 			=i.submit "Sold"
 
-		=form_for it, action: "PUT" do |i|
+		=form_for it, method: "patch" do |i|
 			=i.hidden_field :working_condition, :value => false
 			=i.submit "Refunded"
 
 		
-
+			/? do not get the below code -- why both needed?
 		%button=link_to "delete", "/items/#{it.id}", {:action => "delete", :method => :delete}
 
 		%button=link_to "edit", "/items/#{it.id}/edit"
@@ -28,5 +28,11 @@
 
 
 		%br
+		%br
+
+
+	/%table{:style => left}
+	/= f.radio_button
+
 
 

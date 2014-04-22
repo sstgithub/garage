@@ -10,7 +10,11 @@
 = it.label "What is the price?"
 = it.text_area :price
 
-= it.label "Sold? (Put true or false)"
-= it.text_area :working_condition
+/ = it.label "Sold? (Put true or false)"
+/ = it.text_area :working_condition
 
-= it.submit "Add"
+=	it.label "Sold"
+= it.radio_button :working_condition, true
+
+= it.label "Refunded"
+= it.radio_button :working_condition, false
