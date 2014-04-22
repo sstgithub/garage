@@ -8,22 +8,21 @@
 		%li= "Price: #{number_to_currency(it.price)}"
 		%li= "Sold?: #{it.working_condition}"
 
-		=url: "/items/#{it.id}", action: "PUT" do |t|
+		=form_for it, action: "PUT" do |t|
 			=t.hidden_field :working_condition, :value => true
 			=t.submit "Sold"
 
-		=form_for it, url: "/items/#{it.id}", action: "PUT" do |t|
+		=form_for it, action: "PUT" do |t|
 			=t.hidden_field :working_condition, :value => false
 			=t.submit "Bought Back"
 
-		/ %button
-		/ 	=form_for it, url: "/items/#{it.id}", action: "DELETE", :item => it.id
+		=form_for it, action: "DELETE" do |t|
+			=it.id
+			=t.submit "Destroy"
 
-		/ %button_to
-		/ 	=form_for it
-		/ 	=url: "/items/#{it.id}"
-		/ 	=item: => it.id
-		/ 	=action: => "DELETE"
+		=button_to it.id, it.id, :method=> :delete, :class=> :destroy
+
+
 
 
 		%br
